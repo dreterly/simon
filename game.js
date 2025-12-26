@@ -25,9 +25,9 @@ function nextSequence() {
 for(let i=0;i<gamePattern.length;i++){
   setTimeout(function(){
   $("#" +gamePattern[i])
-    .fadeIn(100)
-    .fadeOut(100)
-    .fadeIn(100);
+    .fadeIn(200)
+    .fadeOut(200)
+    .fadeIn(200);
 
      playSound( gamePattern[i]);
   animatePress( gamePattern[i]);},600 * i)
