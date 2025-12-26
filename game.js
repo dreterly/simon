@@ -4,6 +4,7 @@ var gamePattern = [];
 var userClickedPattern = [];
 
 $(".btn").click(function () {
+    if(this.classList.contains('start')) return
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
@@ -21,13 +22,18 @@ function nextSequence() {
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
 
-  $("#" + randomChosenColour)
+for(let i=0;i<gamePattern.length;i++){
+  setTimeout(function(){
+  $("#" +gamePattern[i])
     .fadeIn(100)
     .fadeOut(100)
     .fadeIn(100);
 
-  playSound(randomChosenColour);
-  animatePress(randomChosenColour);
+     playSound( gamePattern[i]);
+  animatePress( gamePattern[i]);},600 * i)
+  } 
+ 
+ 
 }
 
 function playSound(name) {
@@ -46,7 +52,7 @@ function animatePress(currentColor) {
 let level = 0;
 let ifStarted = false;
 $(document).keydown(function (event) {
-  if (!ifStarted && event.key === "a") {
+  if (!ifStarted && (event.key === "a"||event.key === "а")) {
     ifStarted = true;
     $("h1").text("Level " + level);
     nextSequence();
